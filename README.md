@@ -4,3 +4,5 @@ This project is aiming at designing a option trading strategy for trading Hong K
 
 ### Installing
 ##### Prerequisites
+ - [pandas](https://pandas.pydata.org/)
+ - [QuantLib](http://www.quantlib.org/)
