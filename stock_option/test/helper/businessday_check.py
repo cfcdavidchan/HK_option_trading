@@ -23,7 +23,7 @@ def date_to_string(date):
     # Second input is the start_day of the preiod, presetted as today
         # Note that the start_day means the last day of the whole target preiod because the function is counting backward
     # Third input is the date formate inside the list, it can be in Quantlib date formate ('ql') or string ('str') formate.
-def business_day_preiod_list(preiod, start_day = ql.Date_todaysDate(), formate = 'ql'):
+def business_day_preiod_list(period, start_day = ql.Date_todaysDate(), formate = 'ql'):
     preiod_list = list()
     
     if formate == 'str':
