@@ -87,8 +87,7 @@ class option_data_mining:
     
     
     def top_5_up(self):
-        a = self.top_5('UP')
-        return a
+        return self.top_5('UP')
     def top_5_down(self):
         return self.top_5('DOWN')
     
@@ -98,7 +97,7 @@ class option_data_mining:
         stock = self.code[stock_code]['UNDERLYING STOCK']
         call_table = []
         put_table = []
-        with open('./test_data/dqe180301.csv', 'r') as csvfile:
+        with open(self.path, 'r') as csvfile:
             call = False # checking which part to start saving call table
             put = False  # checking which part to start saving put table
             csvreader = csv.reader(csvfile)
