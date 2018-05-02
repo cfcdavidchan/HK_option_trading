@@ -1,23 +1,23 @@
 from io import BytesIO
 from zipfile import ZipFile
 from urllib.request import urlopen
-from businessday_check import *
+from helper.businessday_check import *
 import os
 
 
 def csv_directory_creater():
     # create a csv directory in the root folder
     if 'csv_file' not in os.listdir():
+        print ('csv_file folder is created in ', os.getcwd())
         os.mkdir('csv_file')
 
 
-def option_csv_downloader(date = None, path= None):
+def option_data_csv(date = None, path= None):
     # if date is None, it will download the last trading day's data
     if date == None:
         date = date_to_string(ql.Date_todaysDate() -1)
     
-    # if the path is not specific, it will download to the csv_file directory in the root directory
-    if path == None:
+    if path == None: # if the path is not specific, it will download to the csv_file directory in the root directory
         csv_directory_creater()
         path = os.getcwd() + '/csv_file/'
         
@@ -25,7 +25,9 @@ def option_csv_downloader(date = None, path= None):
     #  date shoudl be yymmdd
     csv_zip = urlopen(hkex_url + date + '.zip')
     csv_zip = ZipFile(BytesIO(csv_zip.read()))
+        
     csv_zip.extractall(path)
+
     
 
 if __name__ == "__main__":
@@ -83,6 +85,6 @@ if __name__ == "__main__":
     
     for date in date_list:
         try:
-            option_csv_downloader(date= date)
+            option_data_csv(date= date)
         except:
             print (date, 'option data is not available to download')
