@@ -8,7 +8,7 @@ import os
 def csv_directory_creater():
     # create a csv directory in the root folder
     if 'csv_file' not in os.listdir():
-        print ('csv_file folder is created in ', os.getcwd())
+        print ('csv_file folder is created in ', os.getwd())
         os.mkdir('csv_file')
 
 

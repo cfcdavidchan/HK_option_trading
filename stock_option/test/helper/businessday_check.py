@@ -14,11 +14,18 @@ def business_day_checker(date):
 #    calendar = ql.HongKong()
     return calendar.isBusinessDay(date)
 
+def last_tradingday():
+    last_businessday = ql.Date_todaysDate() -1
+    while not business_day_checker(last_businessday):
+        last_businessday = calendar.advance(last_businessday, ql.Period(-1, ql.Days))
+    return last_businessday
+
 # find the nearest trading day
 ## note that the HKEX will not provide current day data
-last_businessday = ql.Date_todaysDate() -1
-while not business_day_checker(last_businessday):
-    last_businessday = calendar.advance(last_businessday, ql.Period(-1, ql.Days))
+# last_businessday = ql.Date_todaysDate() -1
+# while not business_day_checker(last_businessday):
+#     last_businessday = calendar.advance(last_businessday, ql.Period(-1, ql.Days))
+last_businessday = last_tradingday()
 
 
 # Convert Quantlib date formate into string formate
@@ -65,17 +72,18 @@ def business_day_start_end_list(start_date, end_date = None, formate = 'ql'):
     else:
         start_end_list.append(end_date)
     
+    rolling_day = end_date
     while True:
         min_period = ql.Period(-1, ql.Days)
-        end_date = calendar.advance(end_date, min_period)
+        rolling_day = calendar.advance(rolling_day, min_period)
         
-        if end_date < start_date:
+        if rolling_day < start_date:
             break
         
         if formate == 'str':
-            start_end_list.append(date_to_string(end_date))
+            start_end_list.append(date_to_string(rolling_day))
         else:
-            start_end_list.append(end_date)
+            start_end_list.append(rolling_day)
     
     print ('start date: ', start_date, 'end date: ', end_date, 'number of preiod: ', len(start_end_list))
     
