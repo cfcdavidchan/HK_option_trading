@@ -15,7 +15,7 @@ def csv_directory_creater():
 def option_data_csv(date = None, path= None):
     # if date is None, it will download the last trading day's data
     if date == None:
-        date = date_to_string(ql.Date_todaysDate() -1)
+        date = date_to_string(last_tradingday())
     
     if path == None: # if the path is not specific, it will download to the csv_file directory in the root directory
         csv_directory_creater()
@@ -27,7 +27,8 @@ def option_data_csv(date = None, path= None):
     csv_zip = ZipFile(BytesIO(csv_zip.read()))
         
     csv_zip.extractall(path)
-
+    
+    return  csv_zip.infolist()[0].filename #return the filename
     
 
 if __name__ == "__main__":

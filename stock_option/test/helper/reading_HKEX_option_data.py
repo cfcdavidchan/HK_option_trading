@@ -29,7 +29,7 @@ class option_data_mining:
     
     def code_dictionary(self):
         self.code = {}
-        self.option_summary = self.option_summary
+        self.option_summary = self.summary()
         for index, row in self.option_summary.iterrows():
             stock_code = row['STOCK CODE']
             stock_code = re.sub("\D",'',stock_code)
