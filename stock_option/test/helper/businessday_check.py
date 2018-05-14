@@ -95,13 +95,26 @@ def business_day_start_end_list(start_date, end_date = None, formate = 'ql'):
         # Note that the start_day means the last day of the whole target period because the function is counting backward
     # Third input is the date formate inside the list, it can be in Quantlib date formate ('ql') or string ('str') formate.
     
-def business_day_period_list(period, end_date = last_businessday, formate = 'ql'):
+def business_day_period_list(period, end_date = None, formate = 'ql'):
     period_list = list()
     
+    
+    if end_date == None:
+        end_date = last_businessday
+    else:
+        end_date = ql_date_formate(int(end_date.split(' ')[0]), int(end_date.split(' ')[1]), int(end_date.split(' ')[2]))
+        
+
     if end_date > last_businessday:
         print ('Sorry, the end day cannot be further than', last_businessday)
         return
     
+    if not business_day_checker(end_date): # if the end day is not a business day then loop backward         
+        print ('Sorry, end date:  ', end_date, 'is not a business day')
+        while not business_day_checker(end_date):
+               end_date = calendar.advance(end_date, ql.Period(-1, ql.Days))
+        print ('End date will change to ', end_date)
+        
     if formate == 'str':
         period_list.append(date_to_string(end_date))
     else:

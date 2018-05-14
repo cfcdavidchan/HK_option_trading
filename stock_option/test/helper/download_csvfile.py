@@ -28,7 +28,11 @@ def option_data_csv(date = None, path= None):
         
     csv_zip.extractall(path)
     
-    return  csv_zip.infolist()[0].filename #return the filename
+    original_filename = csv_zip.infolist()[0].filename
+    new_filename = csv_zip.infolist()[0].filename.replace('dqe','')
+    
+    os.rename(path+original_filename, path+new_filename)
+    return   new_filename
     
 
 if __name__ == "__main__":

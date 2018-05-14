@@ -95,6 +95,7 @@ class option_data_mining:
     
     
     def call_put_table(self,stock_code):
+        self.code_dictionary()
         stock = self.code[stock_code]['UNDERLYING STOCK']
         call_table = []
         put_table = []
