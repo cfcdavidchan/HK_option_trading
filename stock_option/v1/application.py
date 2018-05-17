@@ -5,6 +5,9 @@ import tkinter as tk
 from tkinter.messagebox import showinfo, showerror
 import os, shutil, json
 
+root_path = os.path.dirname(os.path.abspath(__file__))
+os.chdir(root_path)
+
 ### creating all the necessary directories ###
 if 'csv_tmp' not in os.listdir():
     os.mkdir('csv_tmp')
@@ -314,8 +317,8 @@ class App:
 
                     call_table, put_table = optioncsv.call_put_table(stock)
 
-                    call_table.to_csv('./csv_stock/%s/call_table/call_table_%s' %(stock, optioncsv_filename))
-                    put_table.to_csv('./csv_stock/%s/put_table/put_table_%s' % (stock, optioncsv_filename))
+                    call_table.to_csv('./csv_stock/%s/call_table/call_table_%s' %(stock, optioncsv_filename), index = False)
+                    put_table.to_csv('./csv_stock/%s/put_table/put_table_%s' % (stock, optioncsv_filename), index = False)
 
 
         showinfo("Report", "Dowload Finish")

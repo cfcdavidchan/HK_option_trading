@@ -5,8 +5,8 @@ This project is aiming at designing a option trading strategy for trading Hong K
 ![](/example.png?raw=true)
 # Contents
   - [Installation](https://github.com/cfcdavidchan/HK_option_trading#installation)
-  - [exe file extraction](https://github.com/cfcdavidchan/HK_option_trading#exe_file_extraction_(Windows_Only))
-
+  - [exe file extraction](https://github.com/cfcdavidchan/HK_option_trading#exe-file-extraction-windows-only)
+  - [Usage](https://github.com/cfcdavidchan/HK_option_trading#usage)
 
 ### Installation
 * ##### Language
