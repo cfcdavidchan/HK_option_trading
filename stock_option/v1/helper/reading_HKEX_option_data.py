@@ -107,7 +107,7 @@ class option_data_mining:
                 if not (row):
                     continue
                 ## finding call table ##
-                if stock in row[0]:
+                if stock in row[0] and 'CLASS' in row[0]:
                     call = True #'found'
                     continue
                 if (call) and ('TOTAL CALL' in row):
